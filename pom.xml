@@ -12,6 +12,20 @@
 		</eclipse-repo.url>
 	</properties>
 
+		<scm>
+		<connection>scm:scm:git:https://github.com/fneska/maven_tycho_git</connection>
+		<developerConnection>scm:git:https://github.com/fneska/maven_tycho_git</developerConnection>
+
+		</scm>
+
+	<distributionManagement>
+		<repository>
+			<id>internal.repo</id>
+			<name>Internal repo</name>
+			<url>file://C:/users/fekete.agnes/my_github/maven_release_test1/maven_release_git</url>
+			<layout>default</layout>
+		</repository>
+	</distributionManagement>
 	<repositories>
 		<repository>
 			<id>eclipse-release</id>
@@ -80,7 +94,34 @@
 				</configuration>
 			</plugin>
 
-		</plugins>
+	 <plugin>
+               <groupId>org.apache.maven.plugins</groupId>
+               <artifactId>maven-release-plugin</artifactId>
+               <version>2.5.3</version>
+               <configuration>
+                   <preparationGoals>org.eclipse.tycho:tycho-versions-plugin:${tycho-version}:update-eclipse-metadata org.apache.maven.plugins:maven-scm-plugin:1.9.5:add org.apache.maven.plugins:maven-scm-plugin:1.9.5:checkin</preparationGoals>
+                   <completionGoals>org.eclipse.tycho:tycho-versions-plugin:${tycho-version}:update-eclipse-metadata org.apache.maven.plugins:maven-scm-plugin:1.9.5:add org.apache.maven.plugins:maven-scm-plugin:1.9.5:checkin</completionGoals>
+               </configuration>
+           </plugin>
+           <plugin>
+               <groupId>org.apache.maven.plugins</groupId>
+               <artifactId>maven-scm-plugin</artifactId>
+               <executions>
+                   <execution>
+                       <id>default-cli</id>
+                       <goals>
+                           <goal>add</goal>
+                           <goal>checkin</goal>
+                       </goals>
+                       <configuration>
+                           <includes>**/META-INF/MANIFEST.MF, **/feature.xml, **/*.product,**/category.xml</includes>
+                           <excludes>**/target/**</excludes>
+                           <message>Changing the Eclipse files versions</message>
+                       </configuration>
+                   </execution>
+               </executions>
+           </plugin>
+       </plugins>
 	</build>
 
 	<modules>
