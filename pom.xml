@@ -1,4 +1,4 @@
-<project>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.prolan.maven</groupId>
 	<artifactId>com.prolan.maven.tyco</artifactId>
@@ -16,7 +16,8 @@
 		<connection>scm:scm:git:https://github.com/fneska/maven_tycho_git</connection>
 		<developerConnection>scm:git:https://github.com/fneska/maven_tycho_git</developerConnection>
 
-		</scm>
+		  <tag>com.prolan.maven.tyco-1.0.0</tag>
+  </scm>
 
 	<distributionManagement>
 		<repository>
@@ -93,6 +94,11 @@
 					</environments>
 				</configuration>
 			</plugin>
+			 <plugin>
+        <groupId>org.eclipse.tycho</groupId>
+        <artifactId>tycho-versions-plugin</artifactId>
+        <version>1.2.0</version>
+      </plugin>
 
 	 <plugin>
                <groupId>org.apache.maven.plugins</groupId>
@@ -106,6 +112,7 @@
            <plugin>
                <groupId>org.apache.maven.plugins</groupId>
                <artifactId>maven-scm-plugin</artifactId>
+               <version>1.10.0</version>
                <executions>
                    <execution>
                        <id>default-cli</id>
