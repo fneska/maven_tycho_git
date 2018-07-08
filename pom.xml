@@ -1,8 +1,9 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.prolan.maven</groupId>
 	<artifactId>com.prolan.maven.tyco</artifactId>
-	<version>1.0.0-SNAPSHOT</version>
+	<version>1.0.3</version>
 	<packaging>pom</packaging>
 
 	<properties>
@@ -12,21 +13,21 @@
 		</eclipse-repo.url>
 	</properties>
 
-		<scm>
+	<scm>
 		<connection>scm:scm:git:https://github.com/fneska/maven_tycho_git</connection>
 		<developerConnection>scm:git:https://github.com/fneska/maven_tycho_git</developerConnection>
 
-		  <tag>HEAD</tag>
-  </scm>
+		<tag>com.prolan.maven.tyco-1.0.3</tag>
+	</scm>
 
-	<distributionManagement>
-		<repository>
-			<id>internal.repo</id>
-			<name>Internal repo</name>
-			<url>file://C:/users/fekete.agnes/my_github/maven_release_test1/maven_release_git</url>
-			<layout>default</layout>
-		</repository>
-	</distributionManagement>
+	<!-- <distributionManagement> -->
+	<!-- <repository> -->
+	<!-- <id>internal.repo</id> -->
+	<!-- <name>Internal repo</name> -->
+	<!-- <url>file://C:/users/fekete.agnes/my_github/maven_release_test1/maven_release_git</url> -->
+	<!-- <layout>default</layout> -->
+	<!-- </repository> -->
+	<!-- </distributionManagement> -->
 	<repositories>
 		<repository>
 			<id>eclipse-release</id>
@@ -38,13 +39,8 @@
 	<build>
 		<plugins>
 
-			<plugin>
-				<groupId>org.eclipse.tycho</groupId>
-				<artifactId>tycho-maven-plugin</artifactId>
-				<version>${tycho.version}</version>
-				<extensions>true</extensions>
-			</plugin>
-
+			<!-- <plugin> <groupId>org.eclipse.tycho</groupId> <artifactId>tycho-maven-plugin</artifactId> 
+				<version>${tycho.version}</version> <extensions>true</extensions> </plugin> -->
 			<plugin>
 				<groupId>org.eclipse.tycho</groupId>
 				<artifactId>tycho-packaging-plugin</artifactId>
@@ -59,76 +55,65 @@
 					</execution>
 				</executions>
 			</plugin>
-			
+
 			<plugin>
 				<groupId>org.eclipse.tycho</groupId>
 				<artifactId>target-platform-configuration</artifactId>
 				<version>${tycho.version}</version>
 				<configuration>
 					<environments>
-						<!--environment>
-							<os>linux</os>
-							<ws>gtk</ws>
-							<arch>x86</arch>
-						</environment-->
-						<!--environment>
-							<os>linux</os>
-							<ws>gtk</ws>
-							<arch>x86_64</arch>
-						</environment-->
-						<!--environment>
-							<os>win32</os>
-							<ws>win32</ws>
-							<arch>x86</arch>
-						</environment-->
+
 						<environment>
 							<os>win32</os>
 							<ws>win32</ws>
 							<arch>x86_64</arch>
 						</environment>
-						<!--environment>
-							<os>macosx</os>
-							<ws>cocoa</ws>
-							<arch>x86_64</arch>
-						</environment-->
 					</environments>
 				</configuration>
 			</plugin>
-			 <plugin>
-        <groupId>org.eclipse.tycho</groupId>
-        <artifactId>tycho-versions-plugin</artifactId>
-        <version>1.1.0</version>
-      </plugin>
+			
+			<plugin>
+				<groupId>org.eclipse.tycho</groupId>
+				<artifactId>tycho-versions-plugin</artifactId>
+				<version>1.1.0</version>
+			</plugin>
 
-	 <plugin>
-               <groupId>org.apache.maven.plugins</groupId>
-               <artifactId>maven-release-plugin</artifactId>
-               <version>2.5.3</version>
-               <configuration>
-                   <preparationGoals>org.eclipse.tycho:tycho-versions-plugin:${tycho-version}:update-eclipse-metadata org.apache.maven.plugins:maven-scm-plugin:1.9.5:add org.apache.maven.plugins:maven-scm-plugin:1.9.5:checkin</preparationGoals>
-                   <completionGoals>org.eclipse.tycho:tycho-versions-plugin:${tycho-version}:update-eclipse-metadata org.apache.maven.plugins:maven-scm-plugin:1.9.5:add org.apache.maven.plugins:maven-scm-plugin:1.9.5:checkin</completionGoals>
-               </configuration>
-           </plugin>
-           <plugin>
-               <groupId>org.apache.maven.plugins</groupId>
-               <artifactId>maven-scm-plugin</artifactId>
-               <version>1.10.0</version>
-               <executions>
-                   <execution>
-                       <id>default-cli</id>
-                       <goals>
-                           <goal>add</goal>
-                           <goal>checkin</goal>
-                       </goals>
-                       <configuration>
-                           <includes>**/META-INF/MANIFEST.MF, **/feature.xml, **/*.product,**/category.xml</includes>
-                           <excludes>**/target/**</excludes>
-                           <message>Changing the Eclipse files versions</message>
-                       </configuration>
-                   </execution>
-               </executions>
-           </plugin>
-       </plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-release-plugin</artifactId>
+				<version>2.5.3</version>
+				<configuration>
+					<preparationGoals>org.eclipse.tycho:tycho-versions-plugin:${tycho-version}:update-eclipse-metadata
+						org.apache.maven.plugins:maven-scm-plugin:1.9.5:add
+						org.apache.maven.plugins:maven-scm-plugin:1.9.5:checkin</preparationGoals>
+					<completionGoals>org.eclipse.tycho:tycho-versions-plugin:${tycho-version}:update-eclipse-metadata
+						org.apache.maven.plugins:maven-scm-plugin:1.9.5:add
+						org.apache.maven.plugins:maven-scm-plugin:1.9.5:checkin</completionGoals>
+				</configuration>
+			</plugin>
+			
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-scm-plugin</artifactId>
+				<version>1.10.0</version>
+				<executions>
+					<execution>
+						<id>default-cli</id>
+						<goals>
+							<goal>add</goal>
+							<goal>checkin</goal>
+						</goals>
+						<configuration>
+							<includes>**/META-INF/MANIFEST.MF, **/feature.xml,
+								**/*.product,**/category.xml</includes>
+							<excludes>**/target/**</excludes>
+							<message>Changing the Eclipse files versions</message>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			
+		</plugins>
 	</build>
 
 	<modules>
