@@ -1,0 +1,6 @@
+Manifest-Version: 1.0
+Bundle-SymbolicName: com.prolan.maven.tycho.release1
+Bundle-Name: Release1
+Bundle-Version: 1.0.0.201807091234
+Bundle-ManifestVersion: 2
+
